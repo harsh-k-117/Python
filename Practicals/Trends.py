@@ -1,32 +1,19 @@
-import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
-
-# Load the dataset
-df = pd.read_csv('trends.csv')
-
-print("First five rows of the dataset:")
-print(df.head())
-print()
-
-print("Dataset description:")
-print(df.describe())
-print()
-
-print("Sum of trends by month:")
-print(df.groupby("month")["amount"].sum())
-
-print("Sum of trends by category:")
-print(df.groupby("category")["amount"].sum())
-
-monthly_sales = df.groupby("month")["amount"].sum()
-category_sales = df.groupby("category")["amount"].sum()
-
-plt.plot(monthly_sales)
-plt.title("Monthly Sales Trends")
-plt.xlabel("Month")
-plt.ylabel("Total Sales")
-plt.show()
-
-plt.pie(category_sales, labels=category_sales.index)
-plt.title("Category Sales Trends")
+from sklearn.cluster import KMeans
+X = np.array([
+    [1,2],
+    [1.5,1.8],
+    [5,8],
+    [8,8],
+    [1,0.6],
+    [9,11]
+])
+kmeans = KMeans(n_clusters=2)
+kmeans.fit(X)
+labels = kmeans.labels_
+centroids = kmeans.cluster_centers_
+plt.scatter(X[:,0], X[:,1], c=labels)
+plt.scatter(centroids[:,0], centroids[:,1], color='red', marker='x')
+plt.title("K-Means Clustering")
 plt.show()

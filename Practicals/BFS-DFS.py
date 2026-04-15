@@ -1,5 +1,4 @@
 from collections import deque
-
 graph = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
@@ -8,7 +7,6 @@ graph = {
     'E': [],
     'F': []
 }
-
 def bfs(graph, start):
     visited = set()
     queue = deque([start])
@@ -20,7 +18,6 @@ def bfs(graph, start):
             print(node, end=" ")
             visited.add(node)
             queue.extend(graph[node])
-
 def dfs(graph, node, visited):
 
     if node not in visited:
@@ -29,9 +26,7 @@ def dfs(graph, node, visited):
 
         for neighbor in graph[node]:
             dfs(graph, neighbor, visited)
-
 print("Breadth-First Search (BFS):")
 bfs(graph, 'A')
-
 print("\nDepth-First Search (DFS):")
 dfs(graph, 'A', set())
